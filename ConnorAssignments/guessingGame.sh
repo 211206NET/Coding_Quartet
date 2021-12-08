@@ -19,7 +19,7 @@ randomNum=$(($RANDOM % 100))
 counter = 0
 
 echo "Try and guess the random number! (between 0 and 100)"
-echo "The number is" $randomNum
+#echo "The number is" $randomNum
 read number
 while [ $number -lt 0 ] || [ $number -gt 100 ]
 do
