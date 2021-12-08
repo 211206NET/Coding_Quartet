@@ -1,1 +1,2 @@
-hello my name is Andy I love tennis and programming. I live in Miami.
+hello my name is Andy I play tennis and programming. I live in Miami. I have a total of 4 weeks in programming in Java. My background is in Statistics and Probability.
+I attended GA Tech but never did programming. 
