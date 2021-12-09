@@ -16,7 +16,7 @@
 
 
 randomNum=$(($RANDOM % 100))
-counter = 0
+counter=0
 
 echo "Try and guess the random number! (between 0 and 100)"
 #echo "The number is" $randomNum
