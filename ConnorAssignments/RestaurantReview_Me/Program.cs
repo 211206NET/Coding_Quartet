@@ -1,2 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using RestaurantReview;
+
+Console.WriteLine("Welcome to Restaurant Review!");
+
+Restaurant newResto = new Restaurant();
+string name = newResto.Name = "Carl's Jr.";
+
+Console.WriteLine(name);
