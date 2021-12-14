@@ -13,6 +13,7 @@ while(!exit) {
     Console.WriteLine("3. Leave a review");
     Console.WriteLine("x. Exit");
     string input = Console.ReadLine();
+    int counter = 0;
 
     switch(input) {
         case "1":
@@ -42,38 +43,53 @@ while(!exit) {
             allRestaurants.Add(newRestaurant);
         break;
         case "2":
-            Console.WriteLine();
-            Console.WriteLine("Here are all your restaurants!");
-            foreach(Restaurant resto in allRestaurants)
-            {
-                Console.WriteLine($"Name: {resto.Name} \nCity: {resto.City} \nState: {resto.State}");
-                Console.WriteLine("======Reviews======");
-                foreach(Review review in resto.Reviews)
-                {
-                    Console.WriteLine($"Rating: {review.Rating} \t Note: {review.Note}");
-                }
+            if (allRestaurants.Count == 0) {
+                Console.WriteLine("\nThere are no restaurants listed.");
             }
-            Console.WriteLine();
+            else {
+                Console.WriteLine();
+                Console.WriteLine("Here are all your restaurants!");
+                foreach(Restaurant resto in allRestaurants)
+                {
+                    Console.WriteLine($"Name: {resto.Name} \nCity: {resto.City} \nState: {resto.State}");
+                    Console.WriteLine("======Reviews======");
+                    foreach(Review review in resto.Reviews)
+                    {
+                        Console.WriteLine($"Rating: {review.Rating} \t Note: {review.Note}\n");
+                    }
+                }
+                Console.WriteLine();
+            }
         break;
         case "3":
-            Console.WriteLine("Select a restaurant to leave reviews for");
-            for(int i = 0; i < allRestaurants.Count; i++)
-            {
-                Console.WriteLine($"[{i}] Name: {allRestaurants[i].Name} \nCity: {allRestaurants[i].City} \nState: {allRestaurants[i].State}");
+            if (allRestaurants.Count == 0) {
+                Console.WriteLine("\nThere are no restaurants listed for review");
+            } else {
+                Console.WriteLine("\nSelect a restaurant to leave reviews for");
+                for(int i = 0; i < allRestaurants.Count; i++)
+                {
+                    Console.WriteLine($"\n[{i}] Name: {allRestaurants[i].Name} \nCity: {allRestaurants[i].City} \nState: {allRestaurants[i].State}");
+                    counter++;
+                }
+                int selection = Int32.Parse(Console.ReadLine());
+                while (selection < 0 || selection > counter) {
+                    Console.WriteLine("Please select a restaurant from the list.");
+                    selection = Int32.Parse(Console.ReadLine());
+                }
+
+                Restaurant selectedRestaurant = allRestaurants[selection];
+
+                //now I want to collect information about the review
+                Console.WriteLine("Give a rating: ");
+                int rating = Int32.Parse(Console.ReadLine());
+                Console.WriteLine("Leave a Review: ");
+                string note = Console.ReadLine();
+
+                Review newReview = new Review(rating, note);
+
+                selectedRestaurant.Reviews.Add(newReview);
+                Console.WriteLine("Your review has been successfully added!");
             }
-            int selection = Int32.Parse(Console.ReadLine());
-            Restaurant selectedRestaurant = allRestaurants[selection];
-
-            //now I want to collect information about the review
-            Console.WriteLine("Give a rating: ");
-            int rating = Int32.Parse(Console.ReadLine());
-            Console.WriteLine("Leave a Review: ");
-            string note = Console.ReadLine();
-
-            Review newReview = new Review(rating, note);
-
-            selectedRestaurant.Reviews.Add(newReview);
-            Console.WriteLine("Your review has been successfully added!");
         break;
         case "x":
             exit = true;
